@@ -1,0 +1,47 @@
+name: CI Pipeline
+
+on: [push]
+
+jobs:
+setup:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+        python-version: '3.9'
+        python --version
+        
+    - name: Install dependencies
+        run: |
+        pip install -r requirements.txt
+
+lint:
+    runs-on: ubuntu-latest
+    needs: setup
+    steps:
+    - uses: actions/checkout@v3
+    - name: Lint Python code
+        run: |
+        pip install flake8
+        flake8 app/ --max-line-length=90
+
+test:
+    runs-on: ubuntu-latest
+    needs: setup
+    steps:
+    - uses: actions/checkout@v3
+    - name: Run tests
+        run: |
+        pip install pytest
+        python -m pytest tests/
+run_notebook:
+    runs-on: ubuntu-latest
+    needs: setup
+    steps:
+    - uses: actions/checkout@v3
+    - name: Execute notebook
+        run: |
+        pip install nbconvert
+        jupyter nbconvert --to notebook --execute notebooks/benin_eda.ipynb --output notebooks/benin_eda_executed.ipynb
