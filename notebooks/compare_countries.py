@@ -10,7 +10,7 @@ togo = pd.read_csv("C:/Users/firao/Desktop/PYTHON PROJECTS/solar-challenge-week1
 # Create subplots: one row, three columns for GHI, DNI, DHI
 fig, axes = plt.subplots(1, 3, figsize=(18, 6))
 
-# Define metrics to plot
+# Define metrics to plot graphs
 metrics = ['GHI', 'DNI', 'DHI']
 
 # Loop over each metric and plot boxplot
