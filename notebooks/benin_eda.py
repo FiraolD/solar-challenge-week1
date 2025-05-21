@@ -8,7 +8,7 @@ from scipy.stats import zscore
 
 plt.style.use('ggplot')
 
-# Load data
+# Load data from local address
 df = pd.read_csv("C:/Users/firao/Desktop/PYTHON PROJECTS/solar-challenge-week1/data/benin.csv", parse_dates=['Timestamp'])
 
 # Basic info
