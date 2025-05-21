@@ -42,6 +42,7 @@ plt.ylabel('GHI (W/m²)')
 plt.tight_layout()
 plt.show()
 
+
 # Monthly GHI
 df['Month'] = df['Timestamp'].dt.month
 monthly_ghi = df.groupby('Month')['GHI'].mean()
