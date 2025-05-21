@@ -64,6 +64,33 @@ st.subheader(f"📈 Summary Statistics for {selected_metric}")
 summary_table = generate_summary(data_dict, selected_metric)
 st.dataframe(summary_table)
 
+# Generate automated observations and recommendations
+st.subheader("📊 Observations & 🔧 Recommendations")
+
+# Calculate average GHI for ranking
+summary_ghi = {k: v['GHI'].mean() for k, v in data_dict.items()}
+ranked = sorted(summary_ghi.items(), key=lambda x: x[1], reverse=True)
+top_country = ranked[0][0]
+bottom_country = ranked[-1][0]
+
+# Observations
+st.markdown("### Key Observations:")
+st.markdown(f"- 🌞 **{top_country}** has the highest average Global Horizontal Irradiance (GHI): **{ranked[0][1]:.2f} W/m²**")
+st.markdown(f"- ☁️ **{bottom_country}** has the lowest average GHI: **{ranked[-1][1]:.2f} W/m²**")
+st.markdown(f"- 📉 {country} shows a **standard deviation of {data['GHI'].std():.2f}**, indicating {'high' if data['GHI'].std() > 100 else 'moderate to low'} variability in solar radiation.")
+
+# Recommendations
+st.markdown("### Strategic Recommendations:")
+if top_country == country:
+    st.success(f"✅ Consider prioritizing solar installations in **{country}** — it shows the best solar potential based on GHI.")
+else:
+    st.info(f"📌 While **{country}** is not the top-ranked in GHI, further investigation into seasonal trends or combining solar with storage could enhance feasibility.")
+
+if data['GHI'].std() > 100:
+    st.warning("⚠️ High variability in GHI suggests a need for **solar energy storage** or **hybrid systems** to ensure consistent energy supply.")
+else:
+    st.success("✅ Stable GHI levels in this region support **efficient solar panel performance with minimal intermittency**.")
+
 
 
 
