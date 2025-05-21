@@ -25,7 +25,7 @@ for col in ['GHI', 'DNI', 'DHI']:
     df[col] = df[col].clip(lower=0)
     print(f"Negative {col} values set to 0:", (df[col] < 0).sum())
 
-# Missing values
+# Missing values detection
 print("Missing values:\n", df.isnull().sum())
 
 # Outlier detection
