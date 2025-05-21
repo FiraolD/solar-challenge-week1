@@ -3,7 +3,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-# Load data
+# Load data from local address
 @st.cache_data
 def load_data():
     return {
