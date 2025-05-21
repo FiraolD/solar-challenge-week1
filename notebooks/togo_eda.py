@@ -8,6 +8,7 @@ from scipy.stats import zscore
 
 plt.style.use('ggplot')
 
+
 # Load data
 df = pd.read_csv("C:/Users/firao/Desktop/PYTHON PROJECTS/KIAM PROJECTS/solar-challenge-week/data/togo.csv", parse_dates=['Timestamp'])
 
